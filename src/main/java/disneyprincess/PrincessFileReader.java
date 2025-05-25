@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PrincessFileReader {
-  public static List<Princesses> readPrincessesFromFile(String disneyPrincesses) {
-    List<Princesses> princessList = new ArrayList<>();
+  public static List<Princess> readPrincessesFromFile(String disneyPrincesses) {
+    List<Princess> princessList = new ArrayList<>();
     Path path = Path.of(disneyPrincesses);
 
     try {
@@ -21,7 +21,7 @@ public class PrincessFileReader {
         int age = Integer.parseInt(parts[2].trim());
         String hairColor = parts[3];
         String eyeColor = parts[4];
-        Princesses princesses = new Princesses(id, name, age, hairColor, eyeColor);
+        Princess princesses = new Princess(id, name, age, hairColor, eyeColor);
         princessList.add(princesses);
       }
 
