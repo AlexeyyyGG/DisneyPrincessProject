@@ -1,5 +1,8 @@
 package disneyprincess;
 
+import disneyprincess.model.Princess;
+import disneyprincess.repository.PrincessRepository;
+import disneyprincess.utils.PrincessFileReader;
 import java.util.List;
 
 public class Runner {

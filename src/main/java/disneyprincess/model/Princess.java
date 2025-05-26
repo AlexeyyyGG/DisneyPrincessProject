@@ -1,17 +1,8 @@
-package disneyprincess;
+package disneyprincess.model;
 
-import java.util.Set;
+import disneyprincess.utils.PrincessValidator;
 
 public class Princess {
-
-  public static final int MIN_ID = 1;
-  public static final int MIN_NAME_LENGTH = 1;
-  public static final int MAX_NAME_LENGTH = 30;
-  public static final int MIN_AGE = 0;
-  public static final int MAX_AGE = 120;
-  public static final Set<String> HAIR_COLORS = Set.of("Black", "Blonde", "Platinum-blonde",
-      "Strawberry-blonde", "Red", "Brown");
-  public static final Set<String> EYE_COLORS = Set.of("Brown", "Blue", "Violet", "Hazel");
   private final int id;
   private final String name;
   private final int age;
@@ -19,6 +10,12 @@ public class Princess {
   private final String eyeColor;
 
   public Princess(int id, String name, int age, String hairColor, String eyeColor) {
+    PrincessValidator.validateId(id);
+    PrincessValidator.validateName(name);
+    PrincessValidator.validateAge(age);
+    PrincessValidator.validateHairColors(hairColor);
+    PrincessValidator.validateEyeColors(eyeColor);
+
     this.id = id;
     this.name = name;
     this.age = age;

@@ -1,5 +1,6 @@
-package disneyprincess;
+package disneyprincess.utils;
 
+import disneyprincess.model.Princess;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;

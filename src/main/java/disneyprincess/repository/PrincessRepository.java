@@ -1,10 +1,10 @@
-package disneyprincess;
+package disneyprincess.repository;
 
+import disneyprincess.model.Princess;
 import java.util.ArrayList;
 import java.util.List;
 
 public class PrincessRepository {
-
   private final List<Princess> princesses;
 
   public PrincessRepository() {
