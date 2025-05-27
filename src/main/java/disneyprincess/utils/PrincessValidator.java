@@ -30,28 +30,4 @@ public class PrincessValidator {
           MAX_AGE + " лет");
     }
   }
-
-  public static void validateHairColors(String hairColor) {
-    if (hairColor == null) {
-      throw new IllegalArgumentException("Цвет волос не может быть null");
-    }
-    String normalized = hairColor.trim().toUpperCase();
-    try {
-      HairColor.valueOf(normalized);
-    } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException("Недопустимый цвет волос" + hairColor);
-    }
-  }
-
-  public static void validateEyeColors(String eyeColor) {
-    if (eyeColor == null) {
-      throw new IllegalArgumentException("Цвет глаз не может быть null");
-    }
-    String normalized = eyeColor.trim().toUpperCase();
-    try {
-      EyeColor.valueOf(normalized);
-    } catch (IllegalArgumentException e) {
-      throw new IllegalArgumentException("Недопустимый цвет глаз: " + eyeColor);
-    }
-  }
 }
