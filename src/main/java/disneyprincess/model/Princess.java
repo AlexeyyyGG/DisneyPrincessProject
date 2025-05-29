@@ -9,7 +9,7 @@ public class Princess {
   private final HairColor hairColor;
   private final EyeColor eyeColor;
 
-  public Princess(int id, String name, int age, String hairColor, String eyeColor) {
+  public Princess(int id, String name, int age, HairColor hairColor, EyeColor eyeColor) {
     PrincessValidator.validateId(id);
     PrincessValidator.validateName(name);
     PrincessValidator.validateAge(age);
@@ -17,8 +17,12 @@ public class Princess {
     this.id = id;
     this.name = name;
     this.age = age;
-    this.hairColor = HairColor.fromString(hairColor);
-    this.eyeColor = EyeColor.fromString(eyeColor);
+    this.hairColor = hairColor;
+    this.eyeColor = eyeColor;
+  }
+
+  public int getId() {
+    return id;
   }
 
   @Override

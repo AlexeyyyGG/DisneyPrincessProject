@@ -1,31 +1,24 @@
 package disneyprincess.model;
 
 public enum EyeColor {
-  BROWN("Brown"),
-  BLUE("Blue"),
-  VIOLET("Violet"),
-  HAZEL("Hazel");
+  BROWN,
+  BLUE,
+  VIOLET,
+  HAZEL;
 
-  private final String displayEyeColor;
+  private static final String NULL_COLOR = "Eye color cannot be null";
+  private static final String INVALID_COLOR = "Unacceptable eye color ";
 
-  EyeColor(String displayEyeColor) {
-    this.displayEyeColor = displayEyeColor;
-  }
-
-  private String getDisplayEyeColor() {
-    return displayEyeColor;
-  }
-
-  public static EyeColor fromString(String displayEyeColor) {
-    if (displayEyeColor == null) {
-      throw new IllegalArgumentException("Цвет глаз не может быть null");
+  public static EyeColor fromString(String color) {
+    if (color == null) {
+      throw new IllegalArgumentException(NULL_COLOR);
     }
-    for (EyeColor color : EyeColor.values()) {
-      if (color.getDisplayEyeColor().equalsIgnoreCase(displayEyeColor.trim())) {
-        return color;
+    for (EyeColor dispayColor : EyeColor.values()) {
+      if (dispayColor.name().equalsIgnoreCase(color.trim())) {
+        return dispayColor;
       }
     }
-    throw new IllegalArgumentException("Недопустимый цвет глаз: " + displayEyeColor);
+    throw new IllegalArgumentException(INVALID_COLOR + color);
   }
 }
 

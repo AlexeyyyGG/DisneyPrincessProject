@@ -1,32 +1,25 @@
 package disneyprincess.model;
 
 public enum HairColor {
-  BLACK("Black"),
-  BLONDE("Blonde"),
-  PLATINUM_BLONDE("Platinum-blonde"),
-  STRAWBERRY_BLONDE("Strawberry-blonde"),
-  RED("Red"),
-  BROWN("Brown");
+  BLACK,
+  BLONDE,
+  PLATINUM_BLONDE,
+  STRAWBERRY_BLONDE,
+  RED,
+  BROWN;
 
-  private final String displayHairColor;
+  private static final String NULL_COLOR = "Hair color cannot be null";
+  private static final String INVALID_COLOR = "Inappropriate hair color ";
 
-  HairColor(String displayHairColor) {
-    this.displayHairColor = displayHairColor;
-  }
-
-  private String getDisplayHairColor() {
-    return displayHairColor;
-  }
-
-  public static HairColor fromString(String displayHairColor) {
-    if (displayHairColor == null) {
-      throw new IllegalArgumentException("Цвет волос не может быть null");
+  public static HairColor fromString(String color) {
+    if (color == null) {
+      throw new IllegalArgumentException(NULL_COLOR);
     }
-    for (HairColor color : HairColor.values()) {
-      if (color.getDisplayHairColor().equalsIgnoreCase(displayHairColor.trim())) {
-        return color;
+    for (HairColor displayColor : HairColor.values()) {
+      if (displayColor.name().equalsIgnoreCase(color.trim())) {
+        return displayColor;
       }
     }
-    throw new IllegalArgumentException("Недопустиый цвет волос " + displayHairColor);
+    throw new IllegalArgumentException(INVALID_COLOR + color);
   }
 }
