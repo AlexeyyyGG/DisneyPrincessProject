@@ -1,5 +1,6 @@
 package disneyprincess.commands;
 
+import disneyprincess.model.Princess;
 import disneyprincess.repository.PrincessRepository;
 
 public class ListCommand implements Command {
@@ -10,7 +11,9 @@ public class ListCommand implements Command {
   }
 
   @Override
-  public void execute() {
-    repository.list();
+  public void execute(String[] args) {
+    for (Princess princess: repository.list()){
+      System.out.println(princess);
+    }
   }
 }

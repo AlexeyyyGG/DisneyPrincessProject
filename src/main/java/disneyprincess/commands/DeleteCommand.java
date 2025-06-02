@@ -4,15 +4,15 @@ import disneyprincess.repository.PrincessRepository;
 
 public class DeleteCommand implements Command {
   private final PrincessRepository repository;
-  private final int id;
 
-  public DeleteCommand(PrincessRepository repository, int id) {
+  public DeleteCommand(PrincessRepository repository) {
     this.repository = repository;
-    this.id = id;
+
   }
 
   @Override
-  public void execute() {
-    repository.delete(id);
+  public void execute(String[] args) {
+    int deleteId = Integer.parseInt(args[0]);
+    repository.delete(deleteId);
   }
 }

@@ -5,29 +5,21 @@ import disneyprincess.model.HairColor;
 import disneyprincess.model.Princess;
 import disneyprincess.repository.PrincessRepository;
 
-public class UpdateCommand implements Command{
-  private final int id;
-  private final String name;
-  private final int age;
-  private final HairColor hairColor;
-  private final EyeColor eyeColor;
+public class UpdateCommand implements Command {
   private final PrincessRepository repository;
 
-  public UpdateCommand(int id, String name, int age, HairColor hairColor, EyeColor eyeColor,
-      PrincessRepository repository) {
-    this.id = id;
-    this.name = name;
-    this.age = age;
-    this.hairColor = hairColor;
-    this.eyeColor = eyeColor;
+  public UpdateCommand(PrincessRepository repository) {
     this.repository = repository;
   }
 
-
   @Override
-  public void execute() {
-    Princess updatePrincess = new Princess(id, name, age, hairColor, eyeColor);
+  public void execute(String[] args) {
+    int updateId = Integer.parseInt(args[0]);
+    String updateName = args[1];
+    int updateAge = Integer.parseInt(args[2]);
+    HairColor updateHairColor = HairColor.fromString(args[3]);
+    EyeColor updateEyeColor = EyeColor.fromString(args[4]);
+    Princess updatePrincess = new Princess(updateId, updateName, updateAge, updateHairColor,updateEyeColor);
     repository.update(updatePrincess);
-    System.out.println("Princess update");
   }
 }

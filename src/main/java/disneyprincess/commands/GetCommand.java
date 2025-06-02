@@ -5,16 +5,15 @@ import disneyprincess.repository.PrincessRepository;
 
 public class GetCommand implements Command {
   private final PrincessRepository repository;
-  private final int id;
 
-  public GetCommand(PrincessRepository repository, int id) {
+  public GetCommand(PrincessRepository repository) {
     this.repository = repository;
-    this.id = id;
   }
 
   @Override
-  public void execute() {
-    Princess princess = repository.get(id);
+  public void execute(String[] args) {
+    int getID = Integer.parseInt(args[0]);
+    Princess princess = repository.get(getID);
     System.out.println(princess);
   }
 }

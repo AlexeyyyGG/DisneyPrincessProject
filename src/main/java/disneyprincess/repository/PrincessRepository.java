@@ -37,10 +37,8 @@ public class PrincessRepository {
     return null;
   }
 
-  public void list() {
-    for (Princess princess : princesses) {
-      System.out.println(princess);
-    }
+  public List<Princess> list() {
+    return new ArrayList<>(princesses);
   }
 
   public void delete(int id) {
