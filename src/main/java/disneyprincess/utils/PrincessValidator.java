@@ -16,6 +16,7 @@ public class PrincessValidator {
     if (name == null) {
       throw new IllegalArgumentException("Name cannot be null");
     }
+
     int length = name.length();
     if (length < MIN_NAME_LENGTH || length > MAX_NAME_LENGTH) {
       throw new IllegalArgumentException(

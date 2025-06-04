@@ -2,12 +2,12 @@ package disneyprincess.utils;
 
 import java.util.Scanner;
 
-public class ConsolReader {
+public class ConsoleReader {
   private String[] args;
   private String command;
   private final Scanner scanner;
 
-  public ConsolReader() {
+  public ConsoleReader() {
     this.scanner = new Scanner(System.in);
   }
 
