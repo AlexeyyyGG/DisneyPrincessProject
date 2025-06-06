@@ -2,23 +2,24 @@ package disneyprincess.commands;
 
 import disneyprincess.model.Princess;
 import disneyprincess.repository.PrincessRepository;
+import disneyprincess.utils.Result;
 
 public class ListCommand implements Command {
-  private final PrincessRepository repository;
+    private final PrincessRepository repository;
 
-  public ListCommand(PrincessRepository repository) {
-    this.repository = repository;
-  }
-
-  @Override
-  public void execute(String[] args) {
-    if (repository.list() == null || repository.list().isEmpty()){
-      System.out.println("Collection is empty");
-      return;
+    public ListCommand(PrincessRepository repository) {
+        this.repository = repository;
     }
 
-    for (Princess princess: repository.list()){
-      System.out.println(princess);
+    @Override
+    public Result execute(String[] args) {
+        if (repository.list() == null || repository.list().isEmpty()) {
+            return Result.failure("Collection is empty");
+        }
+        StringBuilder sb = new StringBuilder();
+        for (Princess princess : repository.list()) {
+            sb.append(princess.toString()).append("\n");
+        }
+        return Result.success(sb.toString());
     }
-  }
 }

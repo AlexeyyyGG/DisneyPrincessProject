@@ -1,5 +1,7 @@
 package disneyprincess.commands;
 
+import disneyprincess.utils.Result;
+
 public interface Command {
-  void execute(String[] args);
+    Result execute(String[] args);
 }
