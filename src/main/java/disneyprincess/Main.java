@@ -1,6 +1,7 @@
 package disneyprincess;
 
 import disneyprincess.commands.CommandRegistry;
+import disneyprincess.conveyor.ConveyorCommand;
 import disneyprincess.utils.CommandDispatcher;
 import disneyprincess.utils.ConsoleReader;
 import disneyprincess.model.Princess;
@@ -16,14 +17,7 @@ public class Main {
         String filename = "disneyPrincesses";
         List<Princess> princessesList = PrincessFileReader.readPrincessesFromFile(filename);
         repository.addAll(princessesList);
-        while (true) {
-            reader.read();
-            String command = reader.getCommand();
-            if (command.equalsIgnoreCase("exit")) {
-                System.out.println("Exiting...");
-                break;
-            }
-            dispatcher.dispatch(command, reader.getArgs());
-        }
+        ConveyorCommand conveyor = new ConveyorCommand(reader, dispatcher);
+        conveyor.startConveyor();
     }
 }

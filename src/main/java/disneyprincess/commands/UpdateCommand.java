@@ -4,11 +4,13 @@ import disneyprincess.model.EyeColor;
 import disneyprincess.model.HairColor;
 import disneyprincess.model.Princess;
 import disneyprincess.repository.PrincessRepository;
-import disneyprincess.utils.InputValidator;
-import disneyprincess.utils.Result;
+import disneyprincess.utils.Utils;
 
 public class UpdateCommand implements Command {
     private final PrincessRepository repository;
+    private static final String INSUFFICIENT_ARGS_UPDATE = "Insufficient number of arguments for update";
+    private static final String PRINCESS_NOT_EXIST = "Princess with this ID does not exist";
+    private static final String PRINCESS_UPDATED = "Princess updated";
 
     public UpdateCommand(PrincessRepository repository) {
         this.repository = repository;
@@ -16,26 +18,24 @@ public class UpdateCommand implements Command {
 
     @Override
     public Result execute(String[] args) {
+        if (args.length < 5) {
+            return Result.failure(INSUFFICIENT_ARGS_UPDATE);
+        }
         try {
-            if (args.length < 5) {
-                return Result.failure("Insufficient number of arguments for update");
-            }
-            int updateId = InputValidator.validateId(args[0]);
+            int updateId = Utils.parseId(args[0]);
             if (!repository.exist(updateId)) {
-                return Result.failure("Princess with this ID does not exist");
+                return Result.failure(PRINCESS_NOT_EXIST);
             }
-            String updateName = InputValidator.validateName(args[1]);
-            int updateAge = InputValidator.validateAge(args[2]);
+            String updateName = args[1];
+            int updateAge = Utils.parseAge(args[2]);
             HairColor updateHairColor = HairColor.fromString(args[3]);
             EyeColor updateEyeColor = EyeColor.fromString(args[4]);
             Princess updatePrincess = new Princess(updateId, updateName, updateAge, updateHairColor,
                     updateEyeColor);
             repository.update(updatePrincess);
-            return Result.success("Princess updated");
+            return Result.success(PRINCESS_UPDATED);
         } catch (IllegalArgumentException e) {
             return Result.failure(e.getMessage());
-        } catch (Exception e) {
-            return Result.failure("Unexpected error: " + e.getMessage());
         }
     }
 }

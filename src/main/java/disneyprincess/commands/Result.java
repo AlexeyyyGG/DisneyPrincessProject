@@ -1,4 +1,4 @@
-package disneyprincess.utils;
+package disneyprincess.commands;
 
 public class Result {
     private final String successMessage;

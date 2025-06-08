@@ -6,13 +6,14 @@ public class ConsoleReader {
     private String[] args;
     private String command;
     private final Scanner scanner;
+    private static final String ENTER_COMMAND = "Enter the command: add/update/delete/get/list/exit";
 
     public ConsoleReader() {
         this.scanner = new Scanner(System.in);
     }
 
     public void read() {
-        System.out.println("Enter the command: add/update/delete/get/list/exit");
+        System.out.println(ENTER_COMMAND);
         String input = scanner.nextLine();
         String[] parts = input.split("\\s+");
         this.command = parts[0].toLowerCase();

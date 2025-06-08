@@ -2,10 +2,10 @@ package disneyprincess.commands;
 
 import disneyprincess.model.Princess;
 import disneyprincess.repository.PrincessRepository;
-import disneyprincess.utils.Result;
 
 public class ListCommand implements Command {
     private final PrincessRepository repository;
+    private static final String COLLECTION_EMPTY = "Collection is empty";
 
     public ListCommand(PrincessRepository repository) {
         this.repository = repository;
@@ -13,8 +13,8 @@ public class ListCommand implements Command {
 
     @Override
     public Result execute(String[] args) {
-        if (repository.list() == null || repository.list().isEmpty()) {
-            return Result.failure("Collection is empty");
+        if (repository.list().isEmpty()) {
+            return Result.failure(COLLECTION_EMPTY);
         }
         StringBuilder sb = new StringBuilder();
         for (Princess princess : repository.list()) {

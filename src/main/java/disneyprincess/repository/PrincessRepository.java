@@ -42,11 +42,15 @@ public class PrincessRepository {
     }
 
     public void delete(int id) {
-        for (int i = 0; i < princesses.size(); i++) {
-            if (princesses.get(i).getId() == id) {
-                princesses.remove(i);
+        Princess toRemove = null;
+        for (Princess princess : princesses) {
+            if (princess.getId() == id) {
+                toRemove = princess;
                 break;
             }
+        }
+        if (toRemove != null) {
+            princesses.remove(toRemove);
         }
     }
 

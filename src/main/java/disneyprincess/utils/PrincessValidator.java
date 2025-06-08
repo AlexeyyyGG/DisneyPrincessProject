@@ -1,33 +1,38 @@
 package disneyprincess.utils;
 
 public class PrincessValidator {
-    public static final int MIN_NAME_LENGTH = 1;
-    public static final int MAX_NAME_LENGTH = 30;
-    public static final int MIN_AGE = 0;
-    public static final int MAX_AGE = 120;
+    private static final int MIN_NAME_LENGTH = 1;
+    private static final int MAX_NAME_LENGTH = 30;
+    private static final int MIN_AGE = 0;
+    private static final int MAX_AGE = 120;
+
+    private static final String ID_INVALID_MESSAGE = "Id cannot be less than or equal to 0";
+    private static final String NAME_NULL_MESSAGE = "Name cannot be null";
+    private static final String NAME_LENGTH_MESSAGE = "Name must be from %d to %d letters";
+    private static final String AGE_RANGE_MESSAGE = "Must be between %d and %d years of age";
 
     public static void validateId(int id) {
         if (id <= 0) {
-            throw new IllegalArgumentException("Id cannot be less than or equal to 0");
+            throw new IllegalArgumentException(ID_INVALID_MESSAGE);
         }
     }
 
     public static void validateName(String name) {
         if (name == null) {
-            throw new IllegalArgumentException("Name cannot be null");
+            throw new IllegalArgumentException(NAME_NULL_MESSAGE);
         }
         int length = name.length();
         if (length < MIN_NAME_LENGTH || length > MAX_NAME_LENGTH) {
             throw new IllegalArgumentException(
-                    "Name must be from " + MIN_NAME_LENGTH + " to " + MAX_NAME_LENGTH
-                            + " letters");
+                    String.format(NAME_LENGTH_MESSAGE, MIN_NAME_LENGTH,
+                            MAX_NAME_LENGTH));
         }
     }
 
     public static void validateAge(int age) {
         if (age < MIN_AGE || age > MAX_AGE) {
-            throw new IllegalArgumentException("Must be between " + MIN_AGE + " and " +
-                    MAX_AGE + " years of age");
+            throw new IllegalArgumentException(
+                    String.format(AGE_RANGE_MESSAGE, MIN_AGE, MAX_AGE));
         }
     }
 }

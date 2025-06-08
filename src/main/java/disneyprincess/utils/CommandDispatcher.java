@@ -2,9 +2,12 @@ package disneyprincess.utils;
 
 import disneyprincess.commands.Command;
 import disneyprincess.commands.CommandRegistry;
+import disneyprincess.commands.Result;
 
 public class CommandDispatcher {
     private final CommandRegistry registry;
+    private static final String ERROR_MESSAGE = "Error: ";
+    private static final String UNKNOWN_COMMAND = "Unknown command";
 
     public CommandDispatcher(CommandRegistry registry) {
         this.registry = registry;
@@ -17,10 +20,10 @@ public class CommandDispatcher {
             if (result.isSuccess()) {
                 System.out.println(result.getSuccessMessage());
             } else {
-                System.out.println("Error: " + result.getErrorMessage());
+                System.out.println(ERROR_MESSAGE + result.getErrorMessage());
             }
         } else {
-            System.out.println("Unknown command");
+            System.out.println(UNKNOWN_COMMAND);
         }
     }
 }
