@@ -6,7 +6,7 @@ public enum EyeColor {
     VIOLET,
     HAZEL;
     private static final String NULL_COLOR = "Eye color cannot be null";
-    private static final String INVALID_COLOR = "Unacceptable eye color ";
+    private static final String INVALID_COLOR = "Unacceptable eye color: %s";
 
     public static EyeColor fromString(String color) {
         if (color == null) {
@@ -17,7 +17,7 @@ public enum EyeColor {
                 return dispayColor;
             }
         }
-        throw new IllegalArgumentException(INVALID_COLOR + color);
+        throw new IllegalArgumentException(String.format(INVALID_COLOR, color));
     }
 }
 

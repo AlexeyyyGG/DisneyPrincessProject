@@ -6,20 +6,19 @@ import disneyprincess.utils.ConsoleReader;
 public class ConveyorCommand {
     private final ConsoleReader reader;
     private final CommandDispatcher dispatcher;
+    private final ConveyorState state;
 
-    public ConveyorCommand(ConsoleReader reader, CommandDispatcher dispatcher) {
+    public ConveyorCommand(ConsoleReader reader, CommandDispatcher dispatcher,
+            ConveyorState state) {
         this.reader = reader;
         this.dispatcher = dispatcher;
+        this.state = state;
     }
 
     public void startConveyor() {
-        while (true) {
+        while (state.isRunning()) {
             reader.read();
             String command = reader.getCommand();
-            if (command.equalsIgnoreCase("exit")) {
-                System.out.println("Exiting...");
-                break;
-            }
             dispatcher.dispatch(command, reader.getArgs());
         }
     }

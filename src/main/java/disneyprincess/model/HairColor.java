@@ -8,7 +8,7 @@ public enum HairColor {
     RED,
     BROWN;
     private static final String NULL_COLOR = "Hair color cannot be null";
-    private static final String INVALID_COLOR = "Inappropriate hair color ";
+    private static final String INVALID_COLOR = "Inappropriate hair color: %s";
 
     public static HairColor fromString(String color) {
         if (color == null) {
@@ -19,6 +19,6 @@ public enum HairColor {
                 return displayColor;
             }
         }
-        throw new IllegalArgumentException(INVALID_COLOR + color);
+        throw new IllegalArgumentException(String.format(INVALID_COLOR, color));
     }
 }
