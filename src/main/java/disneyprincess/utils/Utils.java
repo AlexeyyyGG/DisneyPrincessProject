@@ -15,12 +15,10 @@ public class Utils {
     }
 
     public static int parseAge(String ageStr) {
-        int age;
         try {
-            age = Integer.parseInt(ageStr);
+            return Integer.parseInt(ageStr);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(String.format(INVALID_AGE_FORMAT, ageStr));
         }
-        return age;
     }
 }

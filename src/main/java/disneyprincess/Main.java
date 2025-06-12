@@ -16,7 +16,8 @@ public class Main {
         ConsoleReader reader = new ConsoleReader();
         ConveyorState conveyorState = new ConveyorState();
         CommandDispatcher dispatcher = new CommandDispatcher(
-                new CommandRegistry(repository, conveyorState));
+                new CommandRegistry(repository, conveyorState)
+        );
         String filename = "disneyPrincesses";
         List<Princess> princessesList = PrincessFileReader.readPrincessesFromFile(filename);
         repository.addAll(princessesList);

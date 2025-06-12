@@ -30,8 +30,13 @@ public class UpdateCommand implements Command {
             int updateAge = Utils.parseAge(args[2]);
             HairColor updateHairColor = HairColor.fromString(args[3]);
             EyeColor updateEyeColor = EyeColor.fromString(args[4]);
-            Princess updatePrincess = new Princess(updateId, updateName, updateAge, updateHairColor,
-                    updateEyeColor);
+            Princess updatePrincess = new Princess(
+                    updateId,
+                    updateName,
+                    updateAge,
+                    updateHairColor,
+                    updateEyeColor
+            );
             repository.update(updatePrincess);
             return Result.success(PRINCESS_UPDATED);
         } catch (IllegalArgumentException e) {
