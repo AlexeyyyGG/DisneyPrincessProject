@@ -22,7 +22,7 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - D:\DZ:/config
+      - /home/user/configs:/config
     ports:
       - "3000:3000"
       - "3001:3001"

@@ -5,13 +5,12 @@ public class Utils {
     private static final String INVALID_AGE_FORMAT = "Invalid age format: %s";
 
     public static int parseId(String idStr) {
-        int id;
         try {
-            id = Integer.parseInt(idStr);
+            return Integer.parseInt(idStr);
         } catch (NumberFormatException e) {
             throw new IllegalArgumentException(String.format(INVALID_ID_FORMAT, idStr));
         }
-        return id;
+
     }
 
     public static int parseAge(String ageStr) {

@@ -8,8 +8,11 @@ public class ConveyorCommand {
     private final CommandDispatcher dispatcher;
     private final ConveyorState state;
 
-    public ConveyorCommand(ConsoleReader reader, CommandDispatcher dispatcher,
-            ConveyorState state) {
+    public ConveyorCommand(
+            ConsoleReader reader,
+            CommandDispatcher dispatcher,
+            ConveyorState state
+    ) {
         this.reader = reader;
         this.dispatcher = dispatcher;
         this.state = state;
