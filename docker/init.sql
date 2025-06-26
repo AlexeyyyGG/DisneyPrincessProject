@@ -1,4 +1,4 @@
-USE princess_database;
+USE princesses_database;
 
 CREATE TABLE PRINCESSES
 (

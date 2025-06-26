@@ -4,21 +4,20 @@ import disneyprincess.model.Princess;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PrincessRepository {
-    private final List<Princess> princesses;
+public class PrincessRepositoryList implements Repository {
+    private final List<Princess> princesses = new ArrayList<>();
 
-    public PrincessRepository() {
-        this.princesses = new ArrayList<>();
-    }
 
     public void addAll(List<Princess> list) {
         this.princesses.addAll(list);
     }
 
+    @Override
     public void add(Princess princess) {
         this.princesses.add(princess);
     }
 
+    @Override
     public void update(Princess updatePrincess) {
         for (int i = 0; i < princesses.size(); i++) {
             if (princesses.get(i).getId() == updatePrincess.getId()) {
@@ -28,6 +27,7 @@ public class PrincessRepository {
         }
     }
 
+    @Override
     public Princess get(int id) {
         for (Princess princess : princesses) {
             if (princess.getId() == id) {
@@ -37,10 +37,12 @@ public class PrincessRepository {
         return null;
     }
 
+    @Override
     public List<Princess> list() {
         return new ArrayList<>(princesses);
     }
 
+    @Override
     public void delete(int id) {
         for (int i = 0; i < princesses.size(); i++) {
             if (princesses.get(i).getId() == id) {

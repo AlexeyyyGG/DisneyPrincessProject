@@ -3,16 +3,16 @@ package disneyprincess.commands;
 import disneyprincess.model.EyeColor;
 import disneyprincess.model.HairColor;
 import disneyprincess.model.Princess;
-import disneyprincess.repository.PrincessRepository;
+import disneyprincess.repository.Repository;
 import disneyprincess.utils.Utils;
 
 public class AddCommand implements Command {
-    private final PrincessRepository repository;
+    private final Repository repository;
     private static final String PRINCESS_ADDED = "Princess add";
     private static final String NOT_ENOUGH_ARGUMENTS = "Not enough arguments to add";
     private static final String PRINCESS_ALREADY_EXISTS = "Princess with this ID already exists";
 
-    public AddCommand(PrincessRepository repository) {
+    public AddCommand(Repository repository) {
         this.repository = repository;
     }
 

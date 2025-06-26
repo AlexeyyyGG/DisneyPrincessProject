@@ -1,13 +1,13 @@
 package disneyprincess.commands;
 
 import disneyprincess.model.Princess;
-import disneyprincess.repository.PrincessRepository;
+import disneyprincess.repository.Repository;
 
 public class ListCommand implements Command {
-    private final PrincessRepository repository;
+    private final Repository repository;
     private static final String COLLECTION_EMPTY = "Collection is empty";
 
-    public ListCommand(PrincessRepository repository) {
+    public ListCommand(Repository repository) {
         this.repository = repository;
     }
 

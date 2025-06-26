@@ -1,14 +1,14 @@
 package disneyprincess.commands;
 
 import disneyprincess.conveyor.ConveyorState;
-import disneyprincess.repository.PrincessRepository;
+import disneyprincess.repository.Repository;
 import java.util.HashMap;
 import java.util.Map;
 
 public class CommandRegistry {
     private final Map<String, Command> commands = new HashMap<>();
 
-    public CommandRegistry(PrincessRepository repository, ConveyorState conveyorState) {
+    public CommandRegistry(Repository repository, ConveyorState conveyorState) {
         commands.put("add", new AddCommand(repository));
         commands.put("delete", new DeleteCommand(repository));
         commands.put("get", new GetCommand(repository));

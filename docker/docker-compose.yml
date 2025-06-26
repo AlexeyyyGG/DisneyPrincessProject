@@ -9,9 +9,8 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: user_password
     ports:
-      - "3307:3306"
-    volumes:
-      - mysql_data:/var/lib/mysql
+      - "3306:3306"
+
 
   mysql-workbench:
     image: lscr.io/linuxserver/mysql-workbench:latest
@@ -21,11 +20,6 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     ports:
-      - "4000:3000"
-      - "4003:3001"
-    volumes:
-      - mysql_workbench_data:/config
+      - "3000:3000"
+      - "3001:3001"
 
-volumes:
-  mysql_data:
-  mysql_workbench_data:

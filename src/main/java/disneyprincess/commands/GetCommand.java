@@ -1,15 +1,15 @@
 package disneyprincess.commands;
 
 import disneyprincess.model.Princess;
-import disneyprincess.repository.PrincessRepository;
+import disneyprincess.repository.Repository;
 import disneyprincess.utils.Utils;
 
 public class GetCommand implements Command {
-    private final PrincessRepository repository;
+    private final Repository repository;
     private static final String NO_ID_SPECIFIED = "You must specify the princess ID";
     private static final String NO_PRINCESS_WITH_ID = "There are no princesses with this ID";
 
-    public GetCommand(PrincessRepository repository) {
+    public GetCommand(Repository repository) {
         this.repository = repository;
     }
 
