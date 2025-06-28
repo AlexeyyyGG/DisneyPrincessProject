@@ -3,11 +3,13 @@ package disneyprincess.repository;
 import disneyprincess.model.Princess;
 import java.util.List;
 
-public interface Repository {
+public interface PrincessRepository {
+
+    void addAll(List<Princess> princesses);
 
     void add(Princess princess);
 
-    void update(Princess updatePrincess);
+    void update(Princess princess);
 
     Princess get(int id);
 

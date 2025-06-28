@@ -3,17 +3,17 @@ package disneyprincess.commands;
 import disneyprincess.model.EyeColor;
 import disneyprincess.model.HairColor;
 import disneyprincess.model.Princess;
-import disneyprincess.repository.Repository;
+import disneyprincess.repository.PrincessRepository;
 import disneyprincess.utils.Utils;
 
 public class AddCommand implements Command {
-    private final Repository repository;
+    private final PrincessRepository princessRepository;
     private static final String PRINCESS_ADDED = "Princess add";
     private static final String NOT_ENOUGH_ARGUMENTS = "Not enough arguments to add";
     private static final String PRINCESS_ALREADY_EXISTS = "Princess with this ID already exists";
 
-    public AddCommand(Repository repository) {
-        this.repository = repository;
+    public AddCommand(PrincessRepository princessRepository) {
+        this.princessRepository = princessRepository;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class AddCommand implements Command {
         }
         try {
             int id = Utils.parseId(args[0]);
-            if (repository.exist(id)) {
+            if (princessRepository.exist(id)) {
                 return Result.failure(PRINCESS_ALREADY_EXISTS);
             }
             String name = args[1];
@@ -31,7 +31,7 @@ public class AddCommand implements Command {
             HairColor hairColor = HairColor.fromString(args[3]);
             EyeColor eyeColor = EyeColor.fromString(args[4]);
             Princess princess = new Princess(id, name, age, hairColor, eyeColor);
-            repository.add(princess);
+            princessRepository.add(princess);
             return Result.success(PRINCESS_ADDED);
         } catch (IllegalArgumentException e) {
             return Result.failure(e.getMessage());

@@ -1,16 +1,16 @@
 package disneyprincess.commands;
 
-import disneyprincess.repository.Repository;
+import disneyprincess.repository.PrincessRepository;
 import disneyprincess.utils.Utils;
 
 public class DeleteCommand implements Command {
-    private final Repository repository;
+    private final PrincessRepository princessRepository;
     private static final String NO_ID_SPECIFIED = "You must specify the princess ID";
     private static final String NO_PRINCESS_WITH_ID = "There are no princesses with this ID";
     private static final String PRINCESS_DELETED = "Princess deleted";
 
-    public DeleteCommand(Repository repository) {
-        this.repository = repository;
+    public DeleteCommand(PrincessRepository princessRepository) {
+        this.princessRepository = princessRepository;
     }
 
     @Override
@@ -20,10 +20,10 @@ public class DeleteCommand implements Command {
         }
         try {
             int deleteId = Utils.parseId(args[0]);
-            if (!repository.exist(deleteId)) {
+            if (!princessRepository.exist(deleteId)) {
                 return Result.failure(NO_PRINCESS_WITH_ID);
             }
-            repository.delete(deleteId);
+            princessRepository.delete(deleteId);
             return Result.success(PRINCESS_DELETED);
         } catch (IllegalArgumentException e) {
             return Result.failure(e.getMessage());
