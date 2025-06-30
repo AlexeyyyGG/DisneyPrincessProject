@@ -7,13 +7,14 @@ import disneyprincess.repository.PrincessRepository;
 import disneyprincess.utils.Utils;
 
 public class UpdateCommand implements Command {
-    private final PrincessRepository princessRepository;
+    private final PrincessRepository repository;
+
     private static final String INSUFFICIENT_ARGS_UPDATE = "Insufficient number of arguments for update";
     private static final String PRINCESS_NOT_EXIST = "Princess with this ID does not exist";
     private static final String PRINCESS_UPDATED = "Princess updated";
 
-    public UpdateCommand(PrincessRepository princessRepository) {
-        this.princessRepository = princessRepository;
+    public UpdateCommand(PrincessRepository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -23,7 +24,7 @@ public class UpdateCommand implements Command {
         }
         try {
             int updateId = Utils.parseId(args[0]);
-            if (!princessRepository.exist(updateId)) {
+            if (!repository.exist(updateId)) {
                 return Result.failure(PRINCESS_NOT_EXIST);
             }
             String updateName = args[1];
@@ -37,7 +38,7 @@ public class UpdateCommand implements Command {
                     updateHairColor,
                     updateEyeColor
             );
-            princessRepository.update(updatePrincess);
+            repository.update(updatePrincess);
             return Result.success(PRINCESS_UPDATED);
         } catch (IllegalArgumentException e) {
             return Result.failure(e.getMessage());

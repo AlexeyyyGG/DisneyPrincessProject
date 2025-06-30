@@ -12,8 +12,16 @@ import java.util.List;
 
 public class PrincessRepositoryDB implements PrincessRepository {
     private final Connection connection;
+
+    private static final String COL_ID = "id";
+    private static final String COL_NAME = "name";
+    private static final String COL_AGE = "age";
+    private static final String COL_HAIRCOLOR = "hairColor";
+    private static final String COL_EYECOLOR = "eyeColor";
+
     private static final String FAILED_TO_ADD = "Failed to add princess";
     private static final String PRINCESS_NOT_FOUND = "No princess found with id:  %d";
+
     private static final String SQL_INSERT =
             "INSERT INTO PRINCESSES(id, name, age, hairColor, eyeColor) VALUES (?, ?, ?, ?, ?)";
     private static final String SQL_UPDATE =
@@ -29,21 +37,6 @@ public class PrincessRepositoryDB implements PrincessRepository {
 
     public PrincessRepositoryDB(Connection connection) {
         this.connection = connection;
-    }
-
-    private Princess ResultSetToPrincess(ResultSet resultSet) throws SQLException {
-        int id = resultSet.getInt("id");
-        String name = resultSet.getString("name");
-        int age = resultSet.getInt("age");
-        String hairColor = resultSet.getString("hairColor");
-        String eyeColor = resultSet.getString("eyeColor");
-        return new Princess(
-                id,
-                name,
-                age,
-                HairColor.fromString(hairColor),
-                EyeColor.fromString(eyeColor)
-        );
     }
 
     @Override
@@ -93,7 +86,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 if (resultSet.next()) {
-                    return ResultSetToPrincess(resultSet);
+                    return resultSetToPrincess(resultSet);
                 } else {
                     return null;
                 }
@@ -110,7 +103,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
         try (PreparedStatement statement = connection.prepareStatement(SQL_LIST);
                 ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                princesses.add(ResultSetToPrincess(resultSet));
+                princesses.add(resultSetToPrincess(resultSet));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -142,5 +135,20 @@ public class PrincessRepositoryDB implements PrincessRepository {
             e.printStackTrace();
             return false;
         }
+    }
+
+    private Princess resultSetToPrincess(ResultSet resultSet) throws SQLException {
+        int id = resultSet.getInt(COL_ID);
+        String name = resultSet.getString(COL_NAME);
+        int age = resultSet.getInt(COL_AGE);
+        String hairColor = resultSet.getString(COL_HAIRCOLOR);
+        String eyeColor = resultSet.getString(COL_EYECOLOR);
+        return new Princess(
+                id,
+                name,
+                age,
+                HairColor.fromString(hairColor),
+                EyeColor.fromString(eyeColor)
+        );
     }
 }

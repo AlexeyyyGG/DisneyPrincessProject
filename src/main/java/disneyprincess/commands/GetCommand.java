@@ -5,12 +5,13 @@ import disneyprincess.repository.PrincessRepository;
 import disneyprincess.utils.Utils;
 
 public class GetCommand implements Command {
-    private final PrincessRepository princessRepository;
+    private final PrincessRepository repository;
+
     private static final String NO_ID_SPECIFIED = "You must specify the princess ID";
     private static final String NO_PRINCESS_WITH_ID = "There are no princesses with this ID";
 
-    public GetCommand(PrincessRepository princessRepository) {
-        this.princessRepository = princessRepository;
+    public GetCommand(PrincessRepository repository) {
+        this.repository = repository;
     }
 
     @Override
@@ -20,10 +21,10 @@ public class GetCommand implements Command {
         }
         try {
             int getId = Utils.parseId(args[0]);
-            if (!princessRepository.exist(getId)) {
+            if (!repository.exist(getId)) {
                 return Result.failure(NO_PRINCESS_WITH_ID);
             }
-            Princess princess = princessRepository.get(getId);
+            Princess princess = repository.get(getId);
             String princessInfo = princess.toString();
             return Result.success(princessInfo);
         } catch (IllegalArgumentException e) {
