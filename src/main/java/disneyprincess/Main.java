@@ -14,7 +14,7 @@ import java.sql.Connection;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         try (Connection connection = DatabaseConnection.getConnection()) {
             PrincessRepository repository = new PrincessRepositoryDB(connection);
             ConsoleReader reader = new ConsoleReader();
@@ -27,8 +27,6 @@ public class Main {
             repository.addAll(princessesList);
             ConveyorCommand conveyor = new ConveyorCommand(reader, dispatcher, conveyorState);
             conveyor.startConveyor();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 }

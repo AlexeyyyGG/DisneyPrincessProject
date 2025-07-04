@@ -5,7 +5,6 @@ import disneyprincess.repository.PrincessRepository;
 
 public class ListCommand implements Command {
     private final PrincessRepository repository;
-
     private static final String COLLECTION_EMPTY = "Collection is empty";
 
     public ListCommand(PrincessRepository repository) {

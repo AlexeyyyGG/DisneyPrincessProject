@@ -24,16 +24,18 @@ public class Princess {
         return id;
     }
 
-    public  String getName() {
+    public String getName() {
         return name;
     }
 
     public int getAge() {
         return age;
     }
+
     public HairColor getHairColor() {
         return hairColor;
     }
+
     public EyeColor getEyeColor() {
         return eyeColor;
     }

@@ -5,7 +5,6 @@ import disneyprincess.utils.Utils;
 
 public class DeleteCommand implements Command {
     private final PrincessRepository repository;
-
     private static final String NO_ID_SPECIFIED = "You must specify the princess ID";
     private static final String NO_PRINCESS_WITH_ID = "There are no princesses with this ID";
     private static final String PRINCESS_DELETED = "Princess deleted";

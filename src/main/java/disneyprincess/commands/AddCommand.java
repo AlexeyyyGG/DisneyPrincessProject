@@ -8,7 +8,6 @@ import disneyprincess.utils.Utils;
 
 public class AddCommand implements Command {
     private final PrincessRepository repository;
-
     private static final String PRINCESS_ADDED = "Princess add";
     private static final String NOT_ENOUGH_ARGUMENTS = "Not enough arguments to add";
     private static final String PRINCESS_ALREADY_EXISTS = "Princess with this ID already exists";

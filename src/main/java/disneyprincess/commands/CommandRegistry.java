@@ -8,12 +8,12 @@ import java.util.Map;
 public class CommandRegistry {
     private final Map<String, Command> commands = new HashMap<>();
 
-    public CommandRegistry(PrincessRepository princessRepository, ConveyorState conveyorState) {
-        commands.put("add", new AddCommand(princessRepository));
-        commands.put("delete", new DeleteCommand(princessRepository));
-        commands.put("get", new GetCommand(princessRepository));
-        commands.put("list", new ListCommand(princessRepository));
-        commands.put("update", new UpdateCommand(princessRepository));
+    public CommandRegistry(PrincessRepository repository, ConveyorState conveyorState) {
+        commands.put("add", new AddCommand(repository));
+        commands.put("delete", new DeleteCommand(repository));
+        commands.put("get", new GetCommand(repository));
+        commands.put("list", new ListCommand(repository));
+        commands.put("update", new UpdateCommand(repository));
         commands.put("exit", new ExitCommand(conveyorState));
     }
 

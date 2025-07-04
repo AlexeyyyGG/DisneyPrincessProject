@@ -8,7 +8,6 @@ import disneyprincess.utils.Utils;
 
 public class UpdateCommand implements Command {
     private final PrincessRepository repository;
-
     private static final String INSUFFICIENT_ARGS_UPDATE = "Insufficient number of arguments for update";
     private static final String PRINCESS_NOT_EXIST = "Princess with this ID does not exist";
     private static final String PRINCESS_UPDATED = "Princess updated";

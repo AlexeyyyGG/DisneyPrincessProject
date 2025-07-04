@@ -4,7 +4,6 @@ import disneyprincess.model.Princess;
 import java.util.List;
 
 public interface PrincessRepository {
-
     void addAll(List<Princess> princesses);
 
     void add(Princess princess);
