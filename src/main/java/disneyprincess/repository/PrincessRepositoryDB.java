@@ -99,10 +99,10 @@ public class PrincessRepositoryDB implements PrincessRepository {
             while (resultSet.next()) {
                 princesses.add(resultSetToPrincess(resultSet));
             }
+        return princesses;
         } catch (SQLException e) {
             throw new RuntimeException(FAILED_TO_LIST, e);
         }
-        return princesses;
     }
 
     @Override
