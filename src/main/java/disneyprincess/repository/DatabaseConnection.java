@@ -16,6 +16,11 @@ public class DatabaseConnection {
     private static final String FAILED_TO_LOAD_MESSAGE = "Failed to load database configuration";
 
     static {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException("MySQL JDBC Driver not found", e);
+        }
         try (InputStream input = DatabaseConnection.class.getResourceAsStream(PROPERTIES_PATH)) {
             properties.load(input);
         } catch (IOException e) {
