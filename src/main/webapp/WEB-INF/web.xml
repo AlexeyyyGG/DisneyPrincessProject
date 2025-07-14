@@ -9,6 +9,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RepositoryServlet</servlet-name>
-    <url-pattern>/hello-world</url-pattern>
+    <url-pattern>/princesses</url-pattern>
   </servlet-mapping>
 </web-app>

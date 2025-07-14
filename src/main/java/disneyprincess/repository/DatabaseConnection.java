@@ -12,14 +12,16 @@ public class DatabaseConnection {
     private static final String DB_URL = "db.url";
     private static final String DB_USER = "db.user";
     private static final String DB_PASSWORD = "db.password";
+    private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final Properties properties = new Properties();
     private static final String FAILED_TO_LOAD_MESSAGE = "Failed to load database configuration";
+    private static final String DRIVER_NOT_FOUND_MESSAGE = "MySQL JDBC Driver not found";
 
     static {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            throw new RuntimeException("MySQL JDBC Driver not found", e);
+            throw new RuntimeException(DRIVER_NOT_FOUND_MESSAGE, e);
         }
         try (InputStream input = DatabaseConnection.class.getResourceAsStream(PROPERTIES_PATH)) {
             properties.load(input);
