@@ -4,11 +4,11 @@
   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd"
   version="6.0">
   <servlet>
-    <servlet-name>RepositoryServlet</servlet-name>
-    <servlet-class>disneyprincess.servlet.RepositoryServlet</servlet-class>
+    <servlet-name>PrincessServlet</servlet-name>
+    <servlet-class>disneyprincess.servlet.PrincessServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>RepositoryServlet</servlet-name>
+    <servlet-name>PrincessServlet</servlet-name>
     <url-pattern>/princesses</url-pattern>
   </servlet-mapping>
 </web-app>
