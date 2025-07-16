@@ -19,10 +19,10 @@ repositories {
 
 dependencies {
     compileOnly("jakarta.servlet:jakarta.servlet-api:5.0.0")
-    compileOnly("org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}")
-    compileOnly("org.apache.tomcat.embed:tomcat-embed-el:${tomcatVersion}")
-    compileOnly ("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}")
-    compileOnly ("org.apache.tomcat.embed:tomcat-embed-websocket:${tomcatVersion}")
+    compileOnly("org.apache.tomcat.embed:tomcat-embed-core:$tomcatVersion")
+    compileOnly("org.apache.tomcat.embed:tomcat-embed-el:$tomcatVersion")
+    compileOnly ("org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion")
+    compileOnly ("org.apache.tomcat.embed:tomcat-embed-websocket:$tomcatVersion")
     testImplementation(platform("org.junit:junit-bom:5.10.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     implementation("mysql:mysql-connector-java:8.0.33")

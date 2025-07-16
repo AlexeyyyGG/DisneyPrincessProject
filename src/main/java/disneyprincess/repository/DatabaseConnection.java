@@ -16,6 +16,7 @@ public class DatabaseConnection {
     private static final Properties properties = new Properties();
     private static final String FAILED_TO_LOAD_MESSAGE = "Failed to load database configuration";
     private static final String DRIVER_NOT_FOUND_MESSAGE = "MySQL JDBC Driver not found";
+    private static final String FAILED_TO_CONNECT_MESSAGE = "Failed to connect to database";
 
     static {
         try {
@@ -30,10 +31,14 @@ public class DatabaseConnection {
         }
     }
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() {
         String url = properties.getProperty(DB_URL);
         String user = properties.getProperty(DB_USER);
         String password = properties.getProperty(DB_PASSWORD);
-        return DriverManager.getConnection(url, user, password);
+        try {
+            return DriverManager.getConnection(url, user, password);
+        } catch (SQLException e) {
+            throw new RuntimeException(FAILED_TO_CONNECT_MESSAGE, e);
+        }
     }
 }
