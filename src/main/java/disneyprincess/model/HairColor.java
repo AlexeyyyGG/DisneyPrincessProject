@@ -1,5 +1,6 @@
 package disneyprincess.model;
 
+
 public enum HairColor {
     BLACK,
     BLONDE,
