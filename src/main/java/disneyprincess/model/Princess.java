@@ -3,11 +3,15 @@ package disneyprincess.model;
 import disneyprincess.utils.PrincessValidator;
 
 public class Princess {
-    private final int id;
-    private final String name;
-    private final int age;
-    private final HairColor hairColor;
-    private final EyeColor eyeColor;
+    private int id;
+    private String name;
+    private int age;
+    private HairColor hairColor;
+    private EyeColor eyeColor;
+
+    public Princess(){
+
+    }
 
     public Princess(int id, String name, int age, HairColor hairColor, EyeColor eyeColor) {
         PrincessValidator.validateId(id);
