@@ -27,96 +27,6 @@
 			"response": []
 		},
 		{
-			"name": "Add Princess",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "id",
-							"value": "7",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "Tiana",
-							"type": "text"
-						},
-						{
-							"key": "age",
-							"value": "15",
-							"type": "text"
-						},
-						{
-							"key": "hairColor",
-							"value": "Black",
-							"type": "text"
-						},
-						{
-							"key": "eyeColor",
-							"value": "Brown",
-							"type": "text"
-						}
-					]
-				},
-				"url": {
-					"raw": "http://localhost:8080/princesses",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"princesses"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Princess",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:8080/princesses?id=8&name=Tiana&age=14&hairColor=Black&eyeColor=Brown",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						"princesses"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "8"
-						},
-						{
-							"key": "name",
-							"value": "Tiana"
-						},
-						{
-							"key": "age",
-							"value": "14"
-						},
-						{
-							"key": "hairColor",
-							"value": "Black"
-						},
-						{
-							"key": "eyeColor",
-							"value": "Brown"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
 			"name": "Delete Princess",
 			"request": {
 				"method": "DELETE",
@@ -136,6 +46,62 @@
 							"key": "id",
 							"value": "7"
 						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Princess",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 8,\r\n        \"name\": \"Jane\",\r\n        \"age\": 14,\r\n        \"hairColor\": \"BLACK\",\r\n        \"eyeColor\": \"BROWN\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/princesses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"princesses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update princess",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 8,\r\n        \"name\": \"Jane\",\r\n        \"age\": 15,\r\n        \"hairColor\": \"BLACK\",\r\n        \"eyeColor\": \"BROWN\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/princesses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"princesses"
 					]
 				}
 			},
