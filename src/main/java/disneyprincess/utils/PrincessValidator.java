@@ -15,6 +15,12 @@ public class PrincessValidator {
     private static final String AGE_RANGE_MESSAGE = "Must be between " + MIN_AGE + " and " +
             MAX_AGE + " years of age";
 
+    public static void validatePrincess(Princess princess) {
+        validateId(princess.getId());
+        validateName(princess.getName());
+        validateAge(princess.getAge());
+    }
+
     public static void validateId(int id) {
         if (id <= 0) {
             throw new IllegalArgumentException(ID_INVALID_MESSAGE);
@@ -35,11 +41,5 @@ public class PrincessValidator {
         if (age < MIN_AGE || age > MAX_AGE) {
             throw new IllegalArgumentException(AGE_RANGE_MESSAGE);
         }
-    }
-
-    public static void validatePrincess(Princess princess) {
-        validateAge(princess.getAge());
-        validateName(princess.getName());
-        validateAge(princess.getAge());
     }
 }

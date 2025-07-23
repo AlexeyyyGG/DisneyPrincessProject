@@ -1,7 +1,9 @@
-package disneyprincess.utils;
+package disneyprincess.service;
 
 import disneyprincess.model.Princess;
 import disneyprincess.repository.PrincessRepository;
+import disneyprincess.utils.PrincessValidator;
+import java.util.List;
 
 public class PrincessService {
     private final PrincessRepository repository;
@@ -25,6 +27,26 @@ public class PrincessService {
         PrincessValidator.validatePrincess(princess);
         if (repository.exist(princess.getId())) {
             repository.update(princess);
+        } else {
+            throw new IllegalArgumentException(PRINCESS_NOT_FOUND_MESSAGE);
+        }
+    }
+
+    public Princess getPrincess(int id) {
+        if (repository.exist(id)) {
+            return repository.get(id);
+        } else {
+            throw new IllegalArgumentException(PRINCESS_NOT_FOUND_MESSAGE);
+        }
+    }
+
+    public List<Princess> getAllPrincess() {
+        return repository.list();
+    }
+
+    public void deletePrincess(int id) {
+        if (repository.exist(id)) {
+            repository.delete(id);
         } else {
             throw new IllegalArgumentException(PRINCESS_NOT_FOUND_MESSAGE);
         }
