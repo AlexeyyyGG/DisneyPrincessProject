@@ -21,7 +21,7 @@ public class PrincessServlet extends HttpServlet {
     private static final String CONTENT_TYPE = "application/json;charset=UTF-8";
     private static final String ID_PARAM = "id";
     private static final String INVALID_ID_MESSAGE = "Invalid id format";
-    private static final String INVALID_JSON_MESSAGE = "Invalid JSON format";
+    private static final String MISSING_ID_MESSAGE = "Missing id parameter";
 
     @Override
     public void init() {
@@ -32,58 +32,46 @@ public class PrincessServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType(CONTENT_TYPE);
+        PrintWriter pw = response.getWriter();
         try {
             Princess princess = objectMapper.readValue(request.getInputStream(), Princess.class);
             princessService.addPrincess(princess);
-            response.getWriter().println(objectMapper.writeValueAsString(princess));
-        } catch (JsonProcessingException e) {
+            pw.println(objectMapper.writeValueAsString(princess));
+        } catch (JsonProcessingException | IllegalArgumentException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().println(INVALID_JSON_MESSAGE);
-        } catch (IllegalArgumentException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().println(e.getMessage());
+            pw.println(e.getMessage());
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType(CONTENT_TYPE);
         PrintWriter pw = response.getWriter();
-        Integer id = getIdParam(request, false);
         try {
-            if (id == null) {
-                List<Princess> princesses = princessService.getAllPrincess();
-                pw.println(objectMapper.writeValueAsString(princesses));
-            } else {
-                Princess princess = princessService.getPrincess(id);
-                pw.println(objectMapper.writeValueAsString(princess));
-            }
+            int id = getIdParam(request, false);
+            Princess princess = princessService.getPrincess(id);
+            pw.println(objectMapper.writeValueAsString(princess));
         } catch (IllegalArgumentException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().println(e.getMessage());
+            List<Princess> princesses = princessService.getAllPrincess();
+            pw.println(objectMapper.writeValueAsString(princesses));
         }
     }
 
     protected void doPut(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType(CONTENT_TYPE);
+        PrintWriter pw = response.getWriter();
         try {
             Princess princess = objectMapper.readValue(request.getInputStream(), Princess.class);
             princessService.updatePrincess(princess);
-            response.getWriter().println(objectMapper.writeValueAsString(princess));
-        } catch (JsonProcessingException e) {
+            pw.println(objectMapper.writeValueAsString(princess));
+        } catch (JsonProcessingException | IllegalArgumentException e) {
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().println(INVALID_JSON_MESSAGE);
-        } catch (IllegalArgumentException e) {
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            response.getWriter().println(e.getMessage());
+            pw.println(e.getMessage());
         }
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         try {
-            Integer id = getIdParam(request, true);
-            if (id == null) {
-                return;
-            }
+            int id = getIdParam(request, true);
             princessService.deletePrincess(id);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (IllegalArgumentException e) {
@@ -92,13 +80,13 @@ public class PrincessServlet extends HttpServlet {
         }
     }
 
-    private Integer getIdParam(HttpServletRequest request, boolean isRequired) {
+    private int getIdParam(HttpServletRequest request, boolean isRequired) {
         String idParam = request.getParameter(ID_PARAM);
         if (idParam == null) {
             if (isRequired) {
                 throw new IllegalArgumentException(INVALID_ID_MESSAGE);
             } else {
-                return null;
+                throw new  IllegalArgumentException(MISSING_ID_MESSAGE);
             }
         }
         try {
