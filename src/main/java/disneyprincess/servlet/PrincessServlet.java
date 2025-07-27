@@ -46,11 +46,17 @@ public class PrincessServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType(CONTENT_TYPE);
         PrintWriter pw = response.getWriter();
-        try {
-            int id = getIdParam(request, false);
-            Princess princess = princessService.getPrincess(id);
-            pw.println(objectMapper.writeValueAsString(princess));
-        } catch (IllegalArgumentException e) {
+        String idParam = request.getParameter(ID_PARAM);
+        if (idParam != null) {
+            try {
+                int id = parseIdParam(idParam);
+                Princess princess = princessService.getPrincess(id);
+                pw.println(objectMapper.writeValueAsString(princess));
+            } catch (IllegalArgumentException e) {
+                response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+                pw.println(e.getMessage());
+            }
+        } else {
             List<Princess> princesses = princessService.getAllPrincess();
             pw.println(objectMapper.writeValueAsString(princesses));
         }
@@ -70,8 +76,9 @@ public class PrincessServlet extends HttpServlet {
     }
 
     protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String idParam = request.getParameter(ID_PARAM);
         try {
-            int id = getIdParam(request, true);
+            int id = parseIdParam(idParam);
             princessService.deletePrincess(id);
             response.setStatus(HttpServletResponse.SC_OK);
         } catch (IllegalArgumentException e) {
@@ -80,14 +87,9 @@ public class PrincessServlet extends HttpServlet {
         }
     }
 
-    private int getIdParam(HttpServletRequest request, boolean isRequired) {
-        String idParam = request.getParameter(ID_PARAM);
+    private int parseIdParam(String idParam) {
         if (idParam == null) {
-            if (isRequired) {
-                throw new IllegalArgumentException(INVALID_ID_MESSAGE);
-            } else {
-                throw new  IllegalArgumentException(MISSING_ID_MESSAGE);
-            }
+            throw new IllegalArgumentException(MISSING_ID_MESSAGE);
         }
         try {
             return Integer.parseInt(idParam);
