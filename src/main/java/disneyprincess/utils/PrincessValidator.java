@@ -1,5 +1,7 @@
 package disneyprincess.utils;
 
+import disneyprincess.model.Princess;
+
 public class PrincessValidator {
     private static final int MIN_NAME_LENGTH = 1;
     private static final int MAX_NAME_LENGTH = 30;
@@ -12,6 +14,12 @@ public class PrincessValidator {
                     + " letters";
     private static final String AGE_RANGE_MESSAGE = "Must be between " + MIN_AGE + " and " +
             MAX_AGE + " years of age";
+
+    public static void validatePrincess(Princess princess) {
+        validateId(princess.getId());
+        validateName(princess.getName());
+        validateAge(princess.getAge());
+    }
 
     public static void validateId(int id) {
         if (id <= 0) {

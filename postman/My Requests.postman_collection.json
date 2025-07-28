@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "add31922-d13f-45b7-aed7-95a3e8039e7f",
+		"name": "My Requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46843003",
+		"_collection_link": "https://cloudy-robot-1474966.postman.co/workspace/%D0%90%D0%BB%D0%B5%D0%BA%D1%81%D0%B5%D0%B9's-Workspace~6503db06-5a78-4e8d-84d9-a25174f51c8d/collection/46843003-add31922-d13f-45b7-aed7-95a3e8039e7f?action=share&source=collection_link&creator=46843003"
+	},
+	"item": [
+		{
+			"name": "Get Princesses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/princesses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"princesses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Princess",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/princesses?id=7",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"princesses"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Princess",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 8,\r\n        \"name\": \"Jane\",\r\n        \"age\": 14,\r\n        \"hairColor\": \"BLACK\",\r\n        \"eyeColor\": \"BROWN\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/princesses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"princesses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update princess",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"id\": 8,\r\n        \"name\": \"Jane\",\r\n        \"age\": 15,\r\n        \"hairColor\": \"BLACK\",\r\n        \"eyeColor\": \"BROWN\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/princesses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"princesses"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
