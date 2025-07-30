@@ -1,8 +1,4 @@
-package utils;
-
-import commands.Command;
-import commands.CommandRegistry;
-import commands.Result;
+package commands;
 
 public class CommandDispatcher {
     private final CommandRegistry registry;

@@ -1,7 +1,7 @@
 package conveyor;
 
-import utils.CommandDispatcher;
-import utils.ConsoleReader;
+import commands.CommandDispatcher;
+import readers.ConsoleReader;
 
 public class ConveyorCommand {
     private final ConsoleReader reader;

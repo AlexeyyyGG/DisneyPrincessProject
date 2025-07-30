@@ -2,7 +2,7 @@ package service;
 
 import model.Princess;
 import repository.PrincessRepository;
-import utils.PrincessValidator;
+import validator.PrincessValidator;
 import java.util.List;
 
 public class PrincessService {

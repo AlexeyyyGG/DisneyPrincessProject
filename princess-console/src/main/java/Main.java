@@ -4,10 +4,10 @@ import conveyor.ConveyorState;
 import repository.DatabaseConnection;
 import repository.PrincessRepository;
 import repository.PrincessRepositoryDB;
-import utils.CommandDispatcher;
-import utils.ConsoleReader;
+import commands.CommandDispatcher;
+import readers.ConsoleReader;
 import model.Princess;
-import utils.PrincessFileReader;
+import readers.PrincessFileReader;
 import java.sql.Connection;
 import java.util.List;
 

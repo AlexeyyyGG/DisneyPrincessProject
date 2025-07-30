@@ -1,6 +1,6 @@
 package model;
 
-import utils.PrincessValidator;
+import validator.PrincessValidator;
 
 public class Princess {
     private int id;
