@@ -11,7 +11,6 @@ dependencies {
     compileOnly("org.apache.tomcat.embed:tomcat-embed-el:$tomcatVersion")
     compileOnly("org.apache.tomcat.embed:tomcat-embed-jasper:$tomcatVersion")
     compileOnly("org.apache.tomcat.embed:tomcat-embed-websocket:$tomcatVersion")
-    implementation("mysql:mysql-connector-java:8.0.33")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
 }
 

@@ -2,7 +2,6 @@ services:
   mysql:
     build: .
     container_name: mysql
-    restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: princesses_database

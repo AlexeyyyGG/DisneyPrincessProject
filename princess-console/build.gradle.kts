@@ -4,7 +4,6 @@ plugins {
 
 dependencies {
     implementation(project(":common"))
-    implementation("mysql:mysql-connector-java:8.0.33")
 }
 
 
