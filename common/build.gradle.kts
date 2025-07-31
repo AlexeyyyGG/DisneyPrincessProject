@@ -2,6 +2,6 @@ plugins {
     id("java")
 }
 
-dependencies{
+dependencies {
     implementation("mysql:mysql-connector-java:8.0.33")
 }

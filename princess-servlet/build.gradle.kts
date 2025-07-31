@@ -13,5 +13,3 @@ dependencies {
     compileOnly("org.apache.tomcat.embed:tomcat-embed-websocket:$tomcatVersion")
     implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
 }
-
-
