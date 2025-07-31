@@ -160,4 +160,4 @@ target/
 # My files
 docker.txtgtore
 /.gradle
-/build
+**/build/
