@@ -1,5 +1,8 @@
 package commands;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class CommandDispatcher {
     private final CommandRegistry registry;
     private static final String ERROR_MESSAGE = "Error: ";

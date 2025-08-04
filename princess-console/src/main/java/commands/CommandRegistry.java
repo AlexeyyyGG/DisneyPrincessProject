@@ -1,10 +1,12 @@
 package commands;
 
 import conveyor.ConveyorState;
+import org.springframework.stereotype.Component;
 import repository.PrincessRepository;
 import java.util.HashMap;
 import java.util.Map;
 
+@Component
 public class CommandRegistry {
     private final Map<String, Command> commands = new HashMap<>();
 

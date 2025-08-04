@@ -9,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class PrincessRepositoryDB implements PrincessRepository {
     private final Connection connection;
     private static final String COL_ID = "id";
@@ -99,7 +101,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
             while (resultSet.next()) {
                 princesses.add(resultSetToPrincess(resultSet));
             }
-        return princesses;
+            return princesses;
         } catch (SQLException e) {
             throw new RuntimeException(FAILED_TO_LIST, e);
         }
