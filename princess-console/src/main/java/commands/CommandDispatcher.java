@@ -1,5 +1,6 @@
 package commands;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -8,6 +9,7 @@ public class CommandDispatcher {
     private static final String ERROR_MESSAGE = "Error: ";
     private static final String UNKNOWN_COMMAND = "Unknown command";
 
+    @Autowired
     public CommandDispatcher(CommandRegistry registry) {
         this.registry = registry;
     }

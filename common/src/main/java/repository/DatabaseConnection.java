@@ -6,9 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import org.springframework.stereotype.Component;
 
-@Component
 public class DatabaseConnection {
     private static final String PROPERTIES_PATH = "/db/db.properties";
     private static final String DB_URL = "db.url";

@@ -9,9 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public class PrincessRepositoryDB implements PrincessRepository {
     private final Connection connection;
     private static final String COL_ID = "id";
@@ -37,7 +35,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
     private static final String FAILED_TO_LIST = "Failed to list princesses";
     private static final String FAILED_TO_DELETE_MESSAGE = "Failed to delete princess";
     private static final String FAILED_TO_CHECK_MESSAGE = "Failed to check if princess exists";
-
+    
     public PrincessRepositoryDB(Connection connection) {
         this.connection = connection;
     }
