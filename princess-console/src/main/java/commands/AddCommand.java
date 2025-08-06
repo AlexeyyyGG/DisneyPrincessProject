@@ -3,17 +3,26 @@ package commands;
 import model.EyeColor;
 import model.HairColor;
 import model.Princess;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import repository.PrincessRepository;
 import utils.Utils;
 
+@Component
 public class AddCommand implements Command {
     private final PrincessRepository repository;
     private static final String PRINCESS_ADDED = "Princess add";
     private static final String NOT_ENOUGH_ARGUMENTS = "Not enough arguments to add";
     private static final String PRINCESS_ALREADY_EXISTS = "Princess with this ID already exists";
 
+    @Autowired
     public AddCommand(PrincessRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public String getName() {
+        return "add";
     }
 
     @Override

@@ -1,7 +1,9 @@
 package readers;
 
 import java.util.Scanner;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ConsoleReader {
     private String[] args;
     private String command;

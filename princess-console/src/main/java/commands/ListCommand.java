@@ -1,14 +1,23 @@
 package commands;
 
 import model.Princess;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import repository.PrincessRepository;
 
+@Component
 public class ListCommand implements Command {
     private final PrincessRepository repository;
     private static final String COLLECTION_EMPTY = "Collection is empty";
 
+    @Autowired
     public ListCommand(PrincessRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public String getName() {
+        return "list";
     }
 
     @Override

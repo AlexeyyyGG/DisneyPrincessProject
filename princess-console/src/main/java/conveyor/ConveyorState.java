@@ -1,5 +1,8 @@
 package conveyor;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ConveyorState {
     private boolean running = true;
 

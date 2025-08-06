@@ -1,16 +1,25 @@
 package commands;
 
 import model.Princess;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import repository.PrincessRepository;
 import utils.Utils;
 
+@Component
 public class GetCommand implements Command {
     private final PrincessRepository repository;
     private static final String NO_ID_SPECIFIED = "You must specify the princess ID";
     private static final String NO_PRINCESS_WITH_ID = "There are no princesses with this ID";
 
+    @Autowired
     public GetCommand(PrincessRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public String getName() {
+        return "get";
     }
 
     @Override
