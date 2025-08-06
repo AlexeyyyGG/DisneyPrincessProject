@@ -9,7 +9,7 @@ import repository.PrincessRepositoryDB;
 
 @org.springframework.context.annotation.Configuration
 @ComponentScan(basePackages = {"repository", "commands", "conveyor", "readers"})
-public class Configuration {
+public class Config {
     @Bean
     public Connection connection() {
         return DatabaseConnection.getConnection();

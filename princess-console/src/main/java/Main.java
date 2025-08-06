@@ -1,4 +1,4 @@
-import config.Configuration;
+import config.Config;
 import conveyor.ConveyorCommand;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import repository.PrincessRepository;
@@ -9,7 +9,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(
-                Configuration.class);
+                Config.class);
         PrincessRepository repository = context.getBean(PrincessRepository.class);
         String filename = "disneyPrincesses";
         List<Princess> princessesList = PrincessFileReader.readPrincessesFromFile(filename);
