@@ -3,11 +3,12 @@ package config;
 import java.sql.Connection;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 import repository.DatabaseConnection;
 import repository.PrincessRepository;
 import repository.PrincessRepositoryDB;
 
-@org.springframework.context.annotation.Configuration
+@Configuration
 @ComponentScan(basePackages = {"repository", "commands", "conveyor", "readers"})
 public class Config {
     @Bean
