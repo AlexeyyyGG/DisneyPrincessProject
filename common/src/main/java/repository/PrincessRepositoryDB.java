@@ -35,7 +35,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
     private static final String FAILED_TO_LIST = "Failed to list princesses";
     private static final String FAILED_TO_DELETE_MESSAGE = "Failed to delete princess";
     private static final String FAILED_TO_CHECK_MESSAGE = "Failed to check if princess exists";
-
+    
     public PrincessRepositoryDB(Connection connection) {
         this.connection = connection;
     }
@@ -99,7 +99,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
             while (resultSet.next()) {
                 princesses.add(resultSetToPrincess(resultSet));
             }
-        return princesses;
+            return princesses;
         } catch (SQLException e) {
             throw new RuntimeException(FAILED_TO_LIST, e);
         }

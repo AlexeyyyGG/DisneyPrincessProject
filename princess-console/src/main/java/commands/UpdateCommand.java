@@ -3,17 +3,26 @@ package commands;
 import model.EyeColor;
 import model.HairColor;
 import model.Princess;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import repository.PrincessRepository;
 import utils.Utils;
 
+@Component
 public class UpdateCommand implements Command {
     private final PrincessRepository repository;
     private static final String INSUFFICIENT_ARGS_UPDATE = "Insufficient number of arguments for update";
     private static final String PRINCESS_NOT_EXIST = "Princess with this ID does not exist";
     private static final String PRINCESS_UPDATED = "Princess updated";
 
+    @Autowired
     public UpdateCommand(PrincessRepository repository) {
         this.repository = repository;
+    }
+
+    @Override
+    public String getName() {
+        return "update";
     }
 
     @Override
