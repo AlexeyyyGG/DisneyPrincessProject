@@ -1,4 +1,4 @@
-package com.example.config;
+package config;
 
 import java.sql.Connection;
 import org.springframework.context.annotation.Bean;
@@ -12,9 +12,8 @@ import repository.PrincessRepositoryDB;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan("com.example")
+@ComponentScan(basePackages = {"service", "controller", "handler"})
 public class Config implements WebMvcConfigurer {
-
     @Bean
     public Connection getConnection() {
         return DatabaseConnection.getConnection();

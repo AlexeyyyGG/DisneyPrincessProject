@@ -9,8 +9,7 @@ public class Princess {
     private HairColor hairColor;
     private EyeColor eyeColor;
 
-    public Princess(){
-
+    public Princess() {
     }
 
     public Princess(int id, String name, int age, HairColor hairColor, EyeColor eyeColor) {
@@ -21,6 +20,26 @@ public class Princess {
         this.name = name;
         this.age = age;
         this.hairColor = hairColor;
+        this.eyeColor = eyeColor;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public void setHairColor(HairColor hairColor) {
+        this.hairColor = hairColor;
+    }
+
+    public void setEyeColor(EyeColor eyeColor) {
         this.eyeColor = eyeColor;
     }
 

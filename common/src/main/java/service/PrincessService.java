@@ -1,4 +1,4 @@
-package com.example.service;
+package service;
 
 import java.util.List;
 import model.Princess;
@@ -27,10 +27,15 @@ public class PrincessService {
         }
     }
 
-    public void updatePrincess(Princess princess) {
-        PrincessValidator.validatePrincess(princess);
-        if (repository.exist(princess.getId())) {
-            repository.update(princess);
+    public void updatePrincess(int id, Princess princessRequest) {
+        if (repository.exist(princessRequest.getId())) {
+            Princess existingPrincess = repository.get(id);
+            existingPrincess.setName(princessRequest.getName());
+            existingPrincess.setAge(princessRequest.getAge());
+            existingPrincess.setHairColor(princessRequest.getHairColor());
+            existingPrincess.setEyeColor(princessRequest.getEyeColor());
+            PrincessValidator.validatePrincess(existingPrincess);
+            repository.update(existingPrincess);
         } else {
             throw new IllegalArgumentException(PRINCESS_NOT_FOUND_MESSAGE);
         }
