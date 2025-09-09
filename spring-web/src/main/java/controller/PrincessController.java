@@ -52,7 +52,8 @@ public class PrincessController {
             @PathVariable(ID) int id,
             @RequestBody Princess princess
     ) {
-        service.updatePrincess(id, princess);
+        princess.setId(id);
+        service.updatePrincess(princess);
         return ResponseEntity.status(HttpStatus.OK).build();
     }
 

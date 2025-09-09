@@ -2,18 +2,14 @@ package service;
 
 import java.util.List;
 import model.Princess;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import repository.PrincessRepository;
 import validator.PrincessValidator;
 
-@Service
 public class PrincessService {
     private final PrincessRepository repository;
     private static final String PRINCESS_ALREADY_EXISTS_MESSAGE = "Princess already exists";
     private static final String PRINCESS_NOT_FOUND_MESSAGE = "Princess not found";
 
-    @Autowired
     public PrincessService(PrincessRepository repository) {
         this.repository = repository;
     }
@@ -27,15 +23,9 @@ public class PrincessService {
         }
     }
 
-    public void updatePrincess(int id, Princess princessRequest) {
-        if (repository.exist(princessRequest.getId())) {
-            Princess existingPrincess = repository.get(id);
-            existingPrincess.setName(princessRequest.getName());
-            existingPrincess.setAge(princessRequest.getAge());
-            existingPrincess.setHairColor(princessRequest.getHairColor());
-            existingPrincess.setEyeColor(princessRequest.getEyeColor());
-            PrincessValidator.validatePrincess(existingPrincess);
-            repository.update(existingPrincess);
+    public void updatePrincess(Princess princess) {
+        if (repository.exist(princess.getId())) {
+            repository.update(princess);
         } else {
             throw new IllegalArgumentException(PRINCESS_NOT_FOUND_MESSAGE);
         }

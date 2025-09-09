@@ -27,22 +27,6 @@ public class Princess {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public void setHairColor(HairColor hairColor) {
-        this.hairColor = hairColor;
-    }
-
-    public void setEyeColor(EyeColor eyeColor) {
-        this.eyeColor = eyeColor;
-    }
-
     public int getId() {
         return id;
     }
