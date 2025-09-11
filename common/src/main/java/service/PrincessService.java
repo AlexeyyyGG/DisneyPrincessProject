@@ -16,14 +16,11 @@ public class PrincessService {
 
     public void addPrincess(Princess princess) {
         PrincessValidator.validatePrincess(princess);
-        if (!repository.exist(princess.getId())) {
-            repository.add(princess);
-        } else {
-            throw new IllegalArgumentException(PRINCESS_ALREADY_EXISTS_MESSAGE);
-        }
+        repository.add(princess);
     }
 
     public void updatePrincess(Princess princess) {
+        PrincessValidator.validatePrincess(princess);
         if (repository.exist(princess.getId())) {
             repository.update(princess);
         } else {

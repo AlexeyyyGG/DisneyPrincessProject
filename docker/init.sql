@@ -2,7 +2,7 @@ USE princesses_database;
 
 CREATE TABLE PRINCESSES
 (
-    id INT NOT NULL PRIMARY KEY,
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(30) NOT NULL,
     age INT NOT NULL,
     hairColor

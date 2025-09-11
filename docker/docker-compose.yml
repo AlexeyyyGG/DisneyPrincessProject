@@ -20,8 +20,8 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     ports:
-      - "3000:3000"
-      - "3001:3001"
+      - "4000:3000"
+      - "4001:3001"
     volumes:
       - mysql_workbench_data:/config
 volumes:

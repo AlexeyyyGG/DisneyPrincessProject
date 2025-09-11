@@ -3,7 +3,7 @@ package model;
 import validator.PrincessValidator;
 
 public class Princess {
-    private int id;
+    private Integer id;
     private String name;
     private int age;
     private HairColor hairColor;
@@ -12,11 +12,19 @@ public class Princess {
     public Princess() {
     }
 
-    public Princess(int id, String name, int age, HairColor hairColor, EyeColor eyeColor) {
-        PrincessValidator.validateId(id);
+    public Princess(Integer id, String name, int age, HairColor hairColor, EyeColor eyeColor) {
         PrincessValidator.validateName(name);
         PrincessValidator.validateAge(age);
         this.id = id;
+        this.name = name;
+        this.age = age;
+        this.hairColor = hairColor;
+        this.eyeColor = eyeColor;
+    }
+
+    public Princess(String name, int age, HairColor hairColor, EyeColor eyeColor) {
+        PrincessValidator.validateName(name);
+        PrincessValidator.validateAge(age);
         this.name = name;
         this.age = age;
         this.hairColor = hairColor;
@@ -27,7 +35,7 @@ public class Princess {
         this.id = id;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
