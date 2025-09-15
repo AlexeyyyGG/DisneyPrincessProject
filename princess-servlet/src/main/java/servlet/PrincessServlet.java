@@ -66,7 +66,10 @@ public class PrincessServlet extends HttpServlet {
         response.setContentType(CONTENT_TYPE);
         PrintWriter pw = response.getWriter();
         try {
+            String idParam = request.getParameter(ID_PARAM);
+            int id = parseIdParam(idParam);
             Princess princess = objectMapper.readValue(request.getInputStream(), Princess.class);
+            princess.setId(id);
             princessService.updatePrincess(princess);
             pw.println(objectMapper.writeValueAsString(princess));
         } catch (JsonProcessingException | IllegalArgumentException e) {

@@ -1,9 +1,9 @@
 package service;
 
+import java.util.List;
 import model.Princess;
 import repository.PrincessRepository;
 import validator.PrincessValidator;
-import java.util.List;
 
 public class PrincessService {
     private final PrincessRepository repository;
@@ -16,11 +16,7 @@ public class PrincessService {
 
     public void addPrincess(Princess princess) {
         PrincessValidator.validatePrincess(princess);
-        if (!repository.exist(princess.getId())) {
-            repository.add(princess);
-        } else {
-            throw new IllegalArgumentException(PRINCESS_ALREADY_EXISTS_MESSAGE);
-        }
+        repository.add(princess);
     }
 
     public void updatePrincess(Princess princess) {
@@ -52,4 +48,3 @@ public class PrincessService {
         }
     }
 }
-

@@ -3,18 +3,16 @@ package model;
 import validator.PrincessValidator;
 
 public class Princess {
-    private int id;
+    private Integer id;
     private String name;
     private int age;
     private HairColor hairColor;
     private EyeColor eyeColor;
 
-    public Princess(){
-
+    public Princess() {
     }
 
-    public Princess(int id, String name, int age, HairColor hairColor, EyeColor eyeColor) {
-        PrincessValidator.validateId(id);
+    public Princess(Integer id, String name, int age, HairColor hairColor, EyeColor eyeColor) {
         PrincessValidator.validateName(name);
         PrincessValidator.validateAge(age);
         this.id = id;
@@ -24,7 +22,20 @@ public class Princess {
         this.eyeColor = eyeColor;
     }
 
-    public int getId() {
+    public Princess(String name, int age, HairColor hairColor, EyeColor eyeColor) {
+        PrincessValidator.validateName(name);
+        PrincessValidator.validateAge(age);
+        this.name = name;
+        this.age = age;
+        this.hairColor = hairColor;
+        this.eyeColor = eyeColor;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
         return id;
     }
 

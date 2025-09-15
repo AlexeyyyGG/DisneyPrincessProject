@@ -1,5 +1,6 @@
 package repository;
 
+import java.sql.Statement;
 import model.EyeColor;
 import model.HairColor;
 import model.Princess;
@@ -18,7 +19,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
     private static final String COL_HAIRCOLOR = "hairColor";
     private static final String COL_EYECOLOR = "eyeColor";
     private static final String SQL_INSERT =
-            "INSERT INTO PRINCESSES(id, name, age, hairColor, eyeColor) VALUES (?, ?, ?, ?, ?)";
+            "INSERT INTO PRINCESSES(name, age, hairColor, eyeColor) VALUES (?, ?, ?, ?)";
     private static final String SQL_UPDATE =
             "UPDATE PRINCESSES SET name=?, age=?, hairColor=?, eyeColor=? WHERE id=?";
     private static final String SQL_GET =
@@ -35,7 +36,7 @@ public class PrincessRepositoryDB implements PrincessRepository {
     private static final String FAILED_TO_LIST = "Failed to list princesses";
     private static final String FAILED_TO_DELETE_MESSAGE = "Failed to delete princess";
     private static final String FAILED_TO_CHECK_MESSAGE = "Failed to check if princess exists";
-    
+
     public PrincessRepositoryDB(Connection connection) {
         this.connection = connection;
     }
@@ -49,13 +50,19 @@ public class PrincessRepositoryDB implements PrincessRepository {
 
     @Override
     public void add(Princess princess) {
-        try (PreparedStatement statement = connection.prepareStatement(SQL_INSERT)) {
-            statement.setInt(1, princess.getId());
-            statement.setString(2, princess.getName());
-            statement.setInt(3, princess.getAge());
-            statement.setString(4, princess.getHairColor().toString());
-            statement.setString(5, princess.getEyeColor().toString());
+        try (PreparedStatement statement = connection.prepareStatement(
+                SQL_INSERT,
+                Statement.RETURN_GENERATED_KEYS
+        )) {
+            statement.setString(1, princess.getName());
+            statement.setInt(2, princess.getAge());
+            statement.setString(3, princess.getHairColor().toString());
+            statement.setString(4, princess.getEyeColor().toString());
             statement.executeUpdate();
+            try (ResultSet resultSet = statement.getGeneratedKeys()) {
+                resultSet.next();
+                princess.setId(resultSet.getInt(1));
+            }
         } catch (SQLException e) {
             throw new RuntimeException(FAILED_TO_ADD_MESSAGE, e);
         }
@@ -63,12 +70,13 @@ public class PrincessRepositoryDB implements PrincessRepository {
 
     @Override
     public void update(Princess princess) {
+        Integer id = princess.getId();
         try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE)) {
             statement.setString(1, princess.getName());
             statement.setInt(2, princess.getAge());
             statement.setString(3, princess.getHairColor().toString());
             statement.setString(4, princess.getEyeColor().toString());
-            statement.setInt(5, princess.getId());
+            statement.setInt(5, id);
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(FAILED_TO_UPDATE_MESSAGE, e);
