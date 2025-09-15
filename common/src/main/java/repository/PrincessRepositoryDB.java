@@ -36,7 +36,6 @@ public class PrincessRepositoryDB implements PrincessRepository {
     private static final String FAILED_TO_LIST = "Failed to list princesses";
     private static final String FAILED_TO_DELETE_MESSAGE = "Failed to delete princess";
     private static final String FAILED_TO_CHECK_MESSAGE = "Failed to check if princess exists";
-    private static final String FAILED_ID_MESSAGE = "Creating princess failed, no ID obtained";
 
     public PrincessRepositoryDB(Connection connection) {
         this.connection = connection;
@@ -61,11 +60,8 @@ public class PrincessRepositoryDB implements PrincessRepository {
             statement.setString(4, princess.getEyeColor().toString());
             statement.executeUpdate();
             try (ResultSet resultSet = statement.getGeneratedKeys()) {
-                if (resultSet.next()) {
-                    princess.setId(resultSet.getInt(1));
-                } else {
-                    throw new SQLException(FAILED_ID_MESSAGE);
-                }
+                resultSet.next();
+                princess.setId(resultSet.getInt(1));
             }
         } catch (SQLException e) {
             throw new RuntimeException(FAILED_TO_ADD_MESSAGE, e);
@@ -75,9 +71,6 @@ public class PrincessRepositoryDB implements PrincessRepository {
     @Override
     public void update(Princess princess) {
         Integer id = princess.getId();
-        if (id == null) {
-            throw new IllegalArgumentException("Cannot update princess without id");
-        }
         try (PreparedStatement statement = connection.prepareStatement(SQL_UPDATE)) {
             statement.setString(1, princess.getName());
             statement.setInt(2, princess.getAge());
